@@ -15,55 +15,65 @@ export default function ExerciseCard({exercise, index}) {
       key={index}
       justify="center"
     >
-        <Card sx={{ maxWidth: 400 }}>
-          <CardActionArea
-            onClick={()=>console.log('clicked')}
-          >
-            <CardMedia
-              component="img"
-              height="300"
-              image={exercise.gifUrl}
-              alt={exercise.name}
-              loading="lazy" 
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {index} {exercise.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
-              </Typography>
+      <Card sx={{ 
+        maxWidth: 400,
+        margin: 'auto',
+        marginBottom: '30px'
+        }}
+      >
+        <CardActionArea
+          onClick={()=>console.log('clicked')}
+        >
+          <CardMedia
+            component="img"
+            height="400"
+            image={exercise.gifUrl}
+            alt={exercise.name}
+            loading="lazy" 
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {index} {exercise.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Lizards are a widespread group of squamate reptiles, with over 6,000
+              species, ranging across all continents except Antarctica
+            </Typography>
 
-              <Stack direction="row">
-                <Button sx={{
-                  ml:'21px', 
-                  color:'#fff', 
-                  background: '#ffa9a9', 
-                  fontSize: '14px', 
-                  borderRadius: '20px',
-                  textTransform: 'capitalize'
-                  }}
-                >
-                  {exercise.bodyPart}
-                </Button>
-                <Button sx={{
-                  ml:'21px', 
-                  color:'#fff', 
-                  background: '#fcc757', 
-                  fontSize: '14px', 
-                  borderRadius: '20px',
-                  textTransform: 'capitalize',
-                  textDecoration: 'none'
-                  }}
-                >
-                  {exercise.equipment}
-                </Button>
-              </Stack>
-              
-            </CardContent>
-          </CardActionArea>
-        </Card>
+            <Stack 
+              direction="row"
+              sx={{
+                marginTop: '10px'
+              }}
+            >
+              <Button sx={{
+                ml:'21px', 
+                color:'#fff', 
+                background: '#ffa9a9', 
+                fontSize: '14px', 
+                borderRadius: '5px',
+                textTransform: 'capitalize'
+                }}
+              >
+                {exercise.bodyPart}
+              </Button>
+              <Button sx={{
+                ml:'21px', 
+                color:'#fff', 
+                background: '#fcc757', 
+                fontSize: '14px', 
+                borderRadius: '5px',
+                textTransform: 'capitalize',
+                textDecoration: 'none'
+                }}
+              >
+                {exercise.equipment}
+              </Button>
+            </Stack>
+            
+          </CardContent>
+        </CardActionArea>
+      </Card>
     </Grid>
   );
 }

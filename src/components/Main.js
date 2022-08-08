@@ -16,10 +16,10 @@ const Main = () => {
   }
 
   return (
-    <div class="main">
+    <div className="main">
       {/* overlay to put dark layer on top of the video to make th
           texts on top of it more visible. */}
-      <div class="overlay"></div>
+      <div className="overlay"></div>
       {/* Video is wrapped with a div because
           video tag doesn't let you define z-index */}
       <div id="bg-vid">
@@ -27,7 +27,7 @@ const Main = () => {
       </div>
 
       {/* this is where the main content of the app will be contained. */}
-      <div class="content">
+      <div className="content">
         {/* This ternary operator will switch to MainContent when button 
             is clicked in the Intro component */}
         {intro

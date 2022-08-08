@@ -30,6 +30,7 @@ const MainContent = () => {
         justifyContent="start" 
         zIndex="10"
         overflow="scroll"
+        width="100%"
       >
         <Typography 
           fontWeight={700} 
