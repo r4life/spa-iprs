@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
@@ -18,7 +16,7 @@ const ExerciseList = ({exercises}) => {
   return (
     <>
       <Box sx={{ flexGrow: 1,
-                 margin: '0 auto'        
+                 margin: '0 20px 0 20px'        
               }} 
             maxWidth= "xl"
       >
@@ -27,7 +25,8 @@ const ExerciseList = ({exercises}) => {
             margin: '30px',
           }}
           variant="h5" 
-          gutterBottom component="div"
+          component="div"
+          gutterBottom 
         >
           {exercises.length} exercises found.</Typography>
         <Grid 
@@ -36,6 +35,8 @@ const ExerciseList = ({exercises}) => {
           columns={{ xs: 4, sm: 8, md: 12 }}>
           {currentExercises}
         </Grid>
+
+
       </Box>
     </>
   )

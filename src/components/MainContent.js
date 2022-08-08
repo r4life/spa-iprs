@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import { Box, Button, Stack, TextField, Typography} from '@mui/material';
-import Nav from './Nav.js';
-import Search from './Search.js';
-import ExerciseList from './ExerciseList.js';
+import { CssBaseline, Box, Button, Stack, TextField, Typography, Container} from '@mui/material';
 
+import ExerciseList from './ExerciseList.js';
+import AppPagination from './AppPagination.js';
 
 import ExerciseJSON from '../assets/json/exercises.json';
 
@@ -32,14 +31,22 @@ const MainContent = () => {
         overflow="scroll"
         width="100%"
       >
-        <Typography 
-          fontWeight={700} 
-          sx={{fontSize: {lg: '44px', xs: '30px'}}}
-          mb="50px"
-          textAlign="center"
-        >
-          Find a exercise that fits you!
-        </Typography>
+        <CssBaseline />
+        <Container maxWidth="sm">
+          <Typography 
+            varaint="h1"
+            align="center"
+            color="#fff"
+            sx={{
+              fontSize: '30px',
+              marginTop: '30px',
+              marginBottom: '20px'
+            }}
+          >
+            Find a exercise that fits you!
+          </Typography>
+        </Container>
+
 
         <Box position="relative" mb="72px">
           <TextField
@@ -79,8 +86,9 @@ const MainContent = () => {
             Search
           </Button>
         </Box>
+        <AppPagination />
+        {/* <ExerciseList exercises={exercises} /> */}
 
-        <ExerciseList exercises={exercises} />
 
       </Stack>
   );
