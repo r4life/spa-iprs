@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import ExerciseCard from './ExerciseCard';
 
-const ExerciseList = ({exercises}) => {
+const ExerciseList = ({exercises, totalNumber}) => {
 
   const currentExercises = (
     <>
@@ -28,7 +28,7 @@ const ExerciseList = ({exercises}) => {
           component="div"
           gutterBottom 
         >
-          {exercises.length} exercises found.</Typography>
+          {totalNumber} exercises found.</Typography>
         <Grid 
           container
           spacing={{ xs: 2, md: 3 }} 
