@@ -1,12 +1,12 @@
 [
-  {"back", ""},
-  "cardio",
-  "chest",
-  "lower arms",
-  "lower legs",
-  "neck",
-  "shoulders",
-  "upper arms",
-  "upper legs",
-  "waist"
+  ["back","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/back_bakxns.png"],
+  ["cardio","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/cardio_pifby9.png"],
+  ["chest","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063861/iprs-fithub-categoryPic/chest_aarlbc.png"],
+  ["lower arms","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/lowerArm_zmqra9.png"],
+  ["lower legs","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063625/iprs-fithub-categoryPic/lowerLeg_xw5c2f.png"],
+  ["neck","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/neck_pfrjdg.png"],
+  ["shoulders","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063625/iprs-fithub-categoryPic/shoulder_rksuq9.png"],
+  ["upper arms","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/upperArm_ysfdcg.png"],
+  ["upper legs","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/upperLeg_bfpi7t.png"],
+  ["waist","https://res.cloudinary.com/dzjkvc2ok/image/upload/v1660063626/iprs-fithub-categoryPic/waist_vprobv.png"]
 ]

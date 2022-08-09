@@ -67,3 +67,17 @@ video {
   display: flex;
   justify-content: start;
 }
+
+#category::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+#category::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;
+}
+
+#category::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
+}

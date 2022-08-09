@@ -1,10 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import { CssBaseline, Box, Button, Stack, TextField, Typography, Container} from '@mui/material';
+import { Card, 
+         CardMedia, 
+         CssBaseline, 
+         Box, 
+         Button, 
+         Stack, 
+         TextField, 
+         Typography, 
+         Container,
+         CardActionArea} from '@mui/material';
 
 import ExerciseList from './ExerciseList.js';
 import AppPagination from './AppPagination.js';
 
 import ExerciseJSON from '../assets/json/exercises.json';
+import Category from '../assets/json/bodyparts.json';
 
 const MainContent = () => {
   const [search, setSearch] = useState('');
@@ -27,6 +37,14 @@ const MainContent = () => {
     }
   }
 
+  // Filter exercise when one of bodypart in category is clicked.
+  const handleCategory = (e) => {
+    console.log('clicked ' + e[0]);
+    setExercises(ExerciseJSON.filter(
+      (exercise) => exercise.bodyPart.toLowerCase().includes(e[0]))
+    );
+  }
+
   return (
     <Stack 
       alignItems="center" 
@@ -36,6 +54,8 @@ const MainContent = () => {
       width="100%"
     >
       <CssBaseline />
+
+      {/* Search bar for the MainContent */}
       <Container maxWidth="sm">
         <Typography 
           varaint="h1"
@@ -50,7 +70,6 @@ const MainContent = () => {
           Find the exercises that fits you!
         </Typography>
       </Container>
-
       <Box position="relative" mb="72px">
         <TextField
           sx={{
@@ -91,6 +110,64 @@ const MainContent = () => {
         </Button>
       </Box>
       
+
+      {/* Categories for exercises */}
+      <div id="category" style={{ width: '95%', margin: 'auto' }}>
+        <Stack 
+          Container 
+          direction={'row'} 
+          mt={4} 
+          spacing={4} 
+          ml={2}
+          sx={{
+            height: 'auto',
+            overflow: 'auto',
+            backgroundcolor: 'white'
+          }}
+        >
+          {Category.map((bodypart) => {
+            return (
+              <Box
+                sx={{
+                  minWidth:"150px",
+                  marginBottom: '20px',
+                }}
+              >
+                <Card
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItem: 'center'
+                  }}
+                >
+                  <CardActionArea
+                    onClick={()=>handleCategory(bodypart)}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        textTransform: 'capitalize',
+                        textAlign: 'center',
+                        padding: '20px'
+                      }}
+                    >
+                      {bodypart[0]}
+                    </Typography>  
+                    <CardMedia 
+                      component="img"
+                      maxheight="300"
+                      alt={bodypart[0]}
+                      loading="lazy"
+                      image={bodypart[1]}/>
+                  </CardActionArea>
+                </Card>
+              </Box>
+            )
+          })}
+        </Stack>
+      </div>
+
       <ExerciseList totalNumber={exercises.length} exercises={displayedExercises} />
       <AppPagination setDisplayedExercises={(e) => setDisplayedExercises(e)} exercises={exercises}/>
 

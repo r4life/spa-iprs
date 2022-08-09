@@ -24,6 +24,7 @@ const style = {
 
 export default function ExerciseCard({exercise, index}) {
   const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -36,7 +37,6 @@ export default function ExerciseCard({exercise, index}) {
       justify="center"
     >
       <Card sx={{ 
-        maxWidth: 600,
         margin: 'auto',
         marginBottom: '30px'
         }}
@@ -57,21 +57,19 @@ export default function ExerciseCard({exercise, index}) {
           <CardContent>
             <Typography gutterBottom variant="h5" component="div"
               sx={{
-                textTransform: 'capitalize'
+                textTransform: 'capitalize',
+                textAlign: 'center'
               }}
             >
               {exercise.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
             </Typography>
 
             <Stack 
               direction="row"
               spacing={1}
               sx={{
-                marginTop: '10px'
+                marginTop: '10px',
+                itemAlign: 'center'
               }}
             >
               <Chip color="info" label={exercise.bodyPart}></Chip>
@@ -89,18 +87,25 @@ export default function ExerciseCard({exercise, index}) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
+            <Typography 
+              id="modal-modal-title" 
+              variant="h3" 
+              component="h2"
+              sx={{
+                textTransform: 'capitalize',
+                textAlign: 'center',
+                marginBottom: 3
+              }}
+            >
+              {exercise.name}
+            </Typography>
             <Card>
               <CardMedia
                 component="img"
                 image={exercise.gifUrl}
                 alt="random"
-              >
-
-              </CardMedia>
+              / >
             </Card>
-            <Typography id="modal-modal-title" variant="h3" component="h2">
-              {exercise.name}
-            </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
@@ -108,11 +113,16 @@ export default function ExerciseCard({exercise, index}) {
               direction="row"
               spacing={1}
               sx={{
-                marginTop: '10px'
+                marginTop: '10px',
+                margin: 'auto',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <Chip color="info" label={exercise.bodyPart}></Chip>
               <Chip color="success" label={exercise.equipment}></Chip>
+              <Chip color="primary" label={exercise.target}></Chip>
             </Stack>
           </Box>
         </Modal>
