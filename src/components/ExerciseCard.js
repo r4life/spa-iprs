@@ -68,12 +68,16 @@ export default function ExerciseCard({exercise, index}) {
               direction="row"
               spacing={1}
               sx={{
-                marginTop: '10px',
-                itemAlign: 'center'
+                marginTop: '30px',
+                marginBottom: '30px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
             >
               <Chip color="info" label={exercise.bodyPart}></Chip>
               <Chip color="success" label={exercise.equipment}></Chip>
+              <Chip color="primary" label={exercise.target}></Chip>
             </Stack>
             
           </CardContent>
@@ -106,14 +110,22 @@ export default function ExerciseCard({exercise, index}) {
                 alt="random"
               / >
             </Card>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            <Typography 
+              id="modal-modal-description" 
+              sx={{ 
+                mt: 2,
+                mb: '30px',
+                textAlign: 'center',
+              }}
+            >
+              
             </Typography>
             <Stack              
               direction="row"
               spacing={1}
               sx={{
-                marginTop: '10px',
+                marginTop: '30px',
+                marginBottom: '30px',
                 margin: 'auto',
                 display: 'flex',
                 justifyContent: 'center',
