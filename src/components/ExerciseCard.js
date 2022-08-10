@@ -97,9 +97,27 @@ export default function ExerciseCard({exercise, index}) {
                 alignItems: 'center'
               }}
             >
-              <Chip color="info" label={exercise.bodyPart}></Chip>
-              <Chip color="success" label={exercise.equipment}></Chip>
-              <Chip color="primary" label={exercise.target}></Chip>
+              <Chip
+                sx={{
+                  textTransform: 'capitalize',
+                  textAlign: 'center'
+                }} 
+                color="info" 
+                label={exercise.bodyPart}></Chip>
+              <Chip
+                sx={{
+                  textTransform: 'capitalize',
+                  textAlign: 'center'
+                }} 
+                color="success" 
+                label={exercise.equipment}></Chip>
+              <Chip 
+                sx={{
+                  textTransform: 'capitalize',
+                  textAlign: 'center'
+                }} 
+                color="secondary" 
+                label={exercise.target}></Chip>
             </Stack>
             
           </CardContent>
@@ -163,9 +181,27 @@ export default function ExerciseCard({exercise, index}) {
               
             }}
           >
-            <Chip color="info" label={exercise.bodyPart}></Chip>
-            <Chip color="success" label={exercise.equipment}></Chip>
-            <Chip color="primary" label={exercise.target}></Chip>
+            <Chip
+              sx={{
+                textTransform: 'capitalize',
+                textAlign: 'center'
+              }} 
+              color="info" 
+              label={exercise.bodyPart}></Chip>
+            <Chip
+              sx={{
+                textTransform: 'capitalize',
+                textAlign: 'center'
+              }} 
+              color="success" 
+              label={exercise.equipment}></Chip>
+            <Chip 
+              sx={{
+                textTransform: 'capitalize',
+                textAlign: 'center'
+              }} 
+              color="secondary" 
+              label={exercise.target}></Chip>
           </Stack>
           <Typography>
             <div style={{ width: '95%', margin: 'auto'}}>
