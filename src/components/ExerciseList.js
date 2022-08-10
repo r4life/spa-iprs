@@ -36,9 +36,6 @@ const ExerciseList = ({exercises, totalNumber}) => {
           columns={{ xs: 4, sm: 8, md: 12 }}>
           {currentExercises}
         </Grid>
-
-
-
       </Box>
     </>
   )

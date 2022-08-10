@@ -5,13 +5,11 @@ import CardMedia from '@mui/material/CardMedia';
 import {Box, Button, Stack, Typography, CardActionArea, Grid } from '@mui/material';
 
 import Chip from '@mui/material/Chip';
-import Modal from '@mui/material/Modal';
+import ModalComponent from './Modal.js';
 
 import { fetchData, youtubeOptions } from '../utils/fetchData';
 
-
 // Style for modal that will be displayed when user clicks the card
-// and t
 const style = {
   position: 'absolute',
   top: '50%',
@@ -30,31 +28,41 @@ const style = {
 // ExerciseCard component that will be used by it's parent, 
 // which is ExerciseList component
 export default function ExerciseCard({exercise, index}) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [exerciseVideos, setExerciseVideos] = useState([]);
+  const [modalOn, setModalOn] = useState(false)
 
   const handleOpen = () => {
     setOpen(true);
+    setModalOn(true);
+    console.log('exercise card clicked');
+    fetchVideos();
   }
-  const handleClose = () => setOpen(false);
+  
+  const handleClose = () => {
+    setOpen(false);
+    setModalOn(false);
+    console.log('modal closed');
+    setExerciseVideos([]);
+  };
 
-  // useEffect(()=>{
-  //   const fetchExerciseVideo = async() => {
-  //     const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
-  //     const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${exercise.name}`, youtubeOptions);
-  //     setExerciseVideos(exerciseVideosData.contents);
-  //   }
-  //   fetchExerciseVideo();
-  //   console.log(exerciseVideos);
-  // }, [])
+  const fetchVideos = () => {
+    const fetchExerciseVideo = async() => {
+      const youtubeSearchUrl = 'https://youtube-v31.p.rapidapi.com';
+      const exerciseVideosData = await fetchData(
+        `${youtubeSearchUrl}/search?q=${exercise.name}&part=snippet%2Cid&maxResults=10`
+        , youtubeOptions);
+      console.log(exerciseVideosData.items);
+      setExerciseVideos(exerciseVideosData.items);
+      console.log(exerciseVideos);
+    }
+    fetchExerciseVideo();
+  }
 
-  // useEffect(()=>{
-  //   if(!open){
-  //     return
-  //   } else {
-  //     setExerciseVideos([])
-  //   }
-  // },[open])
+  useEffect(()=>{
+    console.log(exerciseVideos);
+  }, [exerciseVideos])
+
 
 
   return (
@@ -65,13 +73,9 @@ export default function ExerciseCard({exercise, index}) {
       key={index}
       justify="center"
     >
-      <Card sx={{ 
-        margin: 'auto',
-        marginBottom: '30px'
-        }}
-      >
+      <Card sx={{ margin: 'auto', marginBottom: '30px'}}>
         <CardActionArea
-          onClick={handleOpen}
+          onClick={()=>handleOpen()}
         >
           <CardMedia
             component="img"
@@ -112,79 +116,15 @@ export default function ExerciseCard({exercise, index}) {
           </CardContent>
         </CardActionArea>
       </Card>
-      <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography 
-              id="modal-modal-title" 
-              variant="h3" 
-              component="h2"
-              sx={{
-                textTransform: 'capitalize',
-                textAlign: 'center',
-                marginBottom: 3
-              }}
-            >
-              {exercise.name}
-            </Typography>
-            <Card>
-              <CardMedia
-                component="img"
-                image={exercise.gifUrl}
-                alt="random"
-              / >
-            </Card>
-            <Typography 
-              id="modal-modal-description" 
-              sx={{ 
-                mt: 2,
-                mb: '30px',
-                textAlign: 'center',
-              }}
-            >
-              
-            </Typography>
-            <Stack              
-              direction="row"
-              spacing={1}
-              sx={{
-                marginTop: '30px',
-                marginBottom: '30px',
-                margin: 'auto',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Chip color="info" label={exercise.bodyPart}></Chip>
-              <Chip color="success" label={exercise.equipment}></Chip>
-              <Chip color="primary" label={exercise.target}></Chip>
-            </Stack>
-            <Typography>
-              {exerciseVideos?.slice(0, 6).map((item, index)=>(
-                <a 
-                  key={index}
-                  href={`http://www.youtube.com/watch?v=${item.video.videoId}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={item.video.thumbnails[0].url} alt={item.video.title} />
-                  <Box>
-                    <Typography variant="h5" color="#000">
-                      {item.video.title}
-                    </Typography>
-                  </Box>
-                </a>
-              ))}
-            </Typography>
-          </Box>
-        </Modal>
-      </div>
+      <ModalComponent 
+        handleClose={handleClose} 
+        open={open} 
+        style={style}
+        exercise={exercise}
+        exerciseVideo={exerciseVideos}
+      />
     </Grid>
   );
 }
+
+//open, handleClose, style, exercise, exerciseVideos

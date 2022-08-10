@@ -125,7 +125,8 @@ const MainContent = () => {
             backgroundcolor: 'white'
           }}
         >
-          {Category.map((bodypart) => {
+          {Category.map((bodypart, index) => {
+            console.log(index);
             return (
               <Box
                 sx={{
