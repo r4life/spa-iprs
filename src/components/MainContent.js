@@ -126,7 +126,6 @@ const MainContent = () => {
           }}
         >
           {Category.map((bodypart, index) => {
-            console.log(index);
             return (
               <Box
                 sx={{

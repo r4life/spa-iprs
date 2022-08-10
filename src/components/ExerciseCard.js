@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import {Box, Button, Stack, Typography, CardActionArea, Grid } from '@mui/material';
 
+import Modal from '@mui/material/Modal';
 import Chip from '@mui/material/Chip';
 import ModalComponent from './Modal.js';
 
@@ -30,18 +31,15 @@ const style = {
 export default function ExerciseCard({exercise, index}) {
   const [open, setOpen] = useState(false);
   const [exerciseVideos, setExerciseVideos] = useState([]);
-  const [modalOn, setModalOn] = useState(false)
 
   const handleOpen = () => {
     setOpen(true);
-    setModalOn(true);
     console.log('exercise card clicked');
     fetchVideos();
   }
   
   const handleClose = () => {
     setOpen(false);
-    setModalOn(false);
     console.log('modal closed');
     setExerciseVideos([]);
   };
@@ -52,18 +50,15 @@ export default function ExerciseCard({exercise, index}) {
       const exerciseVideosData = await fetchData(
         `${youtubeSearchUrl}/search?q=${exercise.name}&part=snippet%2Cid&maxResults=10`
         , youtubeOptions);
-      console.log(exerciseVideosData.items);
       setExerciseVideos(exerciseVideosData.items);
-      console.log(exerciseVideos);
     }
     fetchExerciseVideo();
   }
 
   useEffect(()=>{
     console.log(exerciseVideos);
+
   }, [exerciseVideos])
-
-
 
   return (
     <Grid 
@@ -116,13 +111,125 @@ export default function ExerciseCard({exercise, index}) {
           </CardContent>
         </CardActionArea>
       </Card>
-      <ModalComponent 
+      {/* <ModalComponent 
         handleClose={handleClose} 
         open={open} 
         style={style}
         exercise={exercise}
         exerciseVideo={exerciseVideos}
-      />
+      /> */}
+          <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography 
+            id="modal-modal-title" 
+            variant="h3" 
+            component="h2"
+            sx={{
+              textTransform: 'capitalize',
+              textAlign: 'center',
+              marginBottom: 3
+            }}
+          >
+            {exercise.name}
+          </Typography>
+          <Card>
+            <CardMedia
+              component="img"
+              image={exercise.gifUrl}
+              alt="random"
+              sx={{
+                maxWidth: '40%'
+              }}
+            / >
+          </Card>
+          <Typography 
+            id="modal-modal-description" 
+            sx={{ 
+              mt: 2,
+              mb: '30px',
+              textAlign: 'center',
+            }}
+          >
+            
+          </Typography>
+          <Stack              
+            direction="row"
+            spacing={1}
+            sx={{
+              marginTop: '30px',
+              marginBottom: '30px',
+              margin: 'auto',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Chip color="info" label={exercise.bodyPart}></Chip>
+            <Chip color="success" label={exercise.equipment}></Chip>
+            <Chip color="primary" label={exercise.target}></Chip>
+          </Stack>
+          <Typography>
+            <div style={{ width: '95%', margin: 'auto'}}>
+              <Stack
+                Container 
+                direction={'row'} 
+                mt={4} 
+                spacing={2} 
+                ml={2}
+                sx={{
+                  height: 'auto',
+                  overflow: 'auto',
+                  backgroundcolor: 'white'
+                }}
+              >
+                {exerciseVideos?.map((item, index)=>(
+                  <Box
+                    sx={{
+                      minWidth:"300px",
+                      marginBottom: '20px',
+                    }}
+                  >
+                    <Card
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItem: 'center'
+                      }}
+                    >
+                      <CardActionArea
+                        key={index}
+                        href={`http://www.youtube.com/watch?v=${item.id.videoId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <CardMedia 
+                          component="img"
+                          alt={item.snippet.title}
+                          loading="lazy"
+                          image={item.snippet.thumbnails.high.url}
+                        />
+                        <Typography variant="h9" color="#000">
+                          {item.snippet.title}
+                        </Typography>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                ))}
+              </Stack>
+            </div>
+
+          </Typography>
+          <Button onClick={()=>console.log(exerciseVideos)}>Click</Button>
+        </Box>
+      </Modal>
+    </div>
     </Grid>
   );
 }
