@@ -43,6 +43,9 @@ export default function ExerciseCard({exercise, index}) {
     setExerciseVideos([]);
   };
 
+  // Making the fetch request to RapidAPI to get JSON response of 10 videos 
+  // searched with exercise.name as the query word.
+  // This will set the exerciseVideos using the response.
   const fetchVideos = () => {
     const fetchExerciseVideo = async() => {
       const youtubeSearchUrl = 'https://youtube-v31.p.rapidapi.com';
@@ -123,14 +126,11 @@ export default function ExerciseCard({exercise, index}) {
           </CardContent>
         </CardActionArea>
       </Card>
-      {/* <ModalComponent 
-        handleClose={handleClose} 
-        open={open} 
-        style={style}
-        exercise={exercise}
-        exerciseVideo={exerciseVideos}
-      /> */}
-          <div>
+
+      {/* Tried to make this modal part to be placed in a separate 
+       component but there was issue with state of exerciseVideos staying stale.
+       It was placed here and everything worked fine again.*/}
+      <div>
       <Modal
         open={open}
         onClose={handleClose}
