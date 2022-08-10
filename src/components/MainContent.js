@@ -203,7 +203,11 @@ const MainContent = () => {
         </Stack>
       </div>
 
+      {/* ExerciseList component is placed here and passes down displayedExercises
+      and totalNumber props */}
       <ExerciseList totalNumber={exercises.length} exercises={displayedExercises} />
+      {/* AddPagination component is used to paginate the list of exercises
+      and it sets the state of displayedExercises*/}
       <AppPagination 
         setDisplayedExercises={(e) => setDisplayedExercises(e)} 
         exercises={exercises}
