@@ -8,7 +8,12 @@ import { Card,
          TextField, 
          Typography, 
          Container,
-         CardActionArea} from '@mui/material';
+         CardActionArea,
+         AppBar,
+         Toolbar,
+         Link} from '@mui/material';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+
 
 import ExerciseList from './ExerciseList.js';
 import AppPagination from './AppPagination.js';
@@ -16,6 +21,22 @@ import AppPagination from './AppPagination.js';
 import ExerciseJSON from '../assets/json/exercises.json';
 import Category from '../assets/json/bodyparts.json';
 
+// Copyright section for footer
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://sunchoi.co.uk">
+        SUNCHOI.CO.UK
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
+// Main content section for this SPA
+// Every component will be encompassed within this component.
 const MainContent = () => {
   const [search, setSearch] = useState('');
   const [exercises, setExercises] = useState(ExerciseJSON);
@@ -46,6 +67,7 @@ const MainContent = () => {
   }
 
   return (
+
     <Stack 
       alignItems="center" 
       justifyContent="start" 
@@ -53,6 +75,15 @@ const MainContent = () => {
       overflow="scroll"
       width="100%"
     >
+
+      {/* Header section for the app */}
+      <AppBar>
+        <Toolbar>
+              <FitnessCenterIcon />
+              <h2>FitnessBell</h2>
+
+          </Toolbar>
+      </AppBar>
       <CssBaseline />
 
       {/* Search bar for the MainContent */}
@@ -67,9 +98,11 @@ const MainContent = () => {
             marginBottom: '20px'
           }}
         >
-          Find the exercises that fit you!
+          Find exercises that fits you!
         </Typography>
       </Container>
+
+      {/* Search feature of the app */}
       <Box position="relative" mb="72px">
         <TextField
           sx={{
@@ -86,6 +119,8 @@ const MainContent = () => {
           placeholder = "Search Exercises"
           type="text"
         />
+
+        {/* Search button that will trigger handleSearch function when clicked */}
         <Button className="search-btn"
           sx={{
             ':hover':{
@@ -169,8 +204,29 @@ const MainContent = () => {
       </div>
 
       <ExerciseList totalNumber={exercises.length} exercises={displayedExercises} />
-      <AppPagination setDisplayedExercises={(e) => setDisplayedExercises(e)} exercises={exercises}/>
+      <AppPagination 
+        setDisplayedExercises={(e) => setDisplayedExercises(e)} 
+        exercises={exercises}
+      />
+      <br />
 
+      <Box sx={{ 
+        bgcolor: 'background.paper', 
+        p: 6,
+        width: '100%' }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="text.secondary"
+          component="p"
+        >
+          
+        </Typography>
+        <Copyright />
+      </Box>
     </Stack>
   );
 }

@@ -54,11 +54,6 @@ export default function ExerciseCard({exercise, index}) {
     fetchExerciseVideo();
   }
 
-  useEffect(()=>{
-    console.log(exerciseVideos);
-
-  }, [exerciseVideos])
-
   return (
     <Grid 
       item 
