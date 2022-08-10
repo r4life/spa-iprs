@@ -38,6 +38,7 @@ const ExerciseList = ({exercises, totalNumber}) => {
         </Grid>
 
 
+
       </Box>
     </>
   )

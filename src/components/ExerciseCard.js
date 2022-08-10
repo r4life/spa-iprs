@@ -48,6 +48,14 @@ export default function ExerciseCard({exercise, index}) {
     console.log(exerciseVideos);
   }, [])
 
+  // useEffect(()=>{
+  //   if(!open){
+  //     return
+  //   } else {
+  //     setExerciseVideos([])
+  //   }
+  // },[open])
+
 
   return (
     <Grid 
