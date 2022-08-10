@@ -38,15 +38,15 @@ export default function ExerciseCard({exercise, index}) {
   }
   const handleClose = () => setOpen(false);
 
-  useEffect(()=>{
-    const fetchExerciseVideo = async() => {
-      const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
-      const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${exercise.name}`, youtubeOptions);
-      setExerciseVideos(exerciseVideosData.contents);
-    }
-    fetchExerciseVideo();
-    console.log(exerciseVideos);
-  }, [])
+  // useEffect(()=>{
+  //   const fetchExerciseVideo = async() => {
+  //     const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
+  //     const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${exercise.name}`, youtubeOptions);
+  //     setExerciseVideos(exerciseVideosData.contents);
+  //   }
+  //   fetchExerciseVideo();
+  //   console.log(exerciseVideos);
+  // }, [])
 
   // useEffect(()=>{
   //   if(!open){
