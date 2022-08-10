@@ -16,8 +16,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  maxWidth: 1000,
-  minWidth: 600,
+  maxWidth: '700px',
+  minWidth: '300px',
   bgcolor: '#fff',
   border: '1px solid #333',
   boxShadow: 24,
@@ -34,7 +34,6 @@ export default function ExerciseCard({exercise, index}) {
 
   const handleOpen = () => {
     setOpen(true);
-    console.log('exercise card clicked');
     fetchVideos();
   }
   
@@ -128,8 +127,7 @@ export default function ExerciseCard({exercise, index}) {
         <Box sx={style}>
           <Typography 
             id="modal-modal-title" 
-            variant="h3" 
-            component="h2"
+            variant="h5" 
             sx={{
               textTransform: 'capitalize',
               textAlign: 'center',
@@ -142,9 +140,8 @@ export default function ExerciseCard({exercise, index}) {
             <CardMedia
               component="img"
               image={exercise.gifUrl}
-              alt="random"
               sx={{
-                maxWidth: '40%'
+                maxWidth: '100%',
               }}
             / >
           </Card>
@@ -168,6 +165,7 @@ export default function ExerciseCard({exercise, index}) {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              
             }}
           >
             <Chip color="info" label={exercise.bodyPart}></Chip>
@@ -215,9 +213,14 @@ export default function ExerciseCard({exercise, index}) {
                           loading="lazy"
                           image={item.snippet.thumbnails.high.url}
                         />
-                        <Typography variant="h9" color="#000">
-                          {item.snippet.title}
-                        </Typography>
+                        <div style={{padding: '10px'}}>
+                          <Typography 
+                            variant="h7" 
+                            color="#000"
+                            >
+                            {item.snippet.title}
+                          </Typography>
+                        </div>
                       </CardActionArea>
                     </Card>
                   </Box>
@@ -226,7 +229,6 @@ export default function ExerciseCard({exercise, index}) {
             </div>
 
           </Typography>
-          <Button onClick={()=>console.log(exerciseVideos)}>Click</Button>
         </Box>
       </Modal>
     </div>

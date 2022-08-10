@@ -67,7 +67,7 @@ const MainContent = () => {
             marginBottom: '20px'
           }}
         >
-          Find the exercises that fits you!
+          Find the exercises that fit you!
         </Typography>
       </Container>
       <Box position="relative" mb="72px">
