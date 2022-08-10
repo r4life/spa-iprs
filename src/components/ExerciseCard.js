@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -7,6 +7,11 @@ import {Box, Button, Stack, Typography, CardActionArea, Grid } from '@mui/materi
 import Chip from '@mui/material/Chip';
 import Modal from '@mui/material/Modal';
 
+import { fetchData, youtubeOptions } from '../utils/fetchData';
+
+
+// Style for modal that will be displayed when user clicks the card
+// and t
 const style = {
   position: 'absolute',
   top: '50%',
@@ -22,11 +27,27 @@ const style = {
   p: 4,
 };
 
+// ExerciseCard component that will be used by it's parent, 
+// which is ExerciseList component
 export default function ExerciseCard({exercise, index}) {
   const [open, setOpen] = React.useState(false);
+  const [exerciseVideos, setExerciseVideos] = useState([]);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+  }
   const handleClose = () => setOpen(false);
+
+  useEffect(()=>{
+    const fetchExerciseVideo = async() => {
+      const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
+      const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${exercise.name}`, youtubeOptions);
+      setExerciseVideos(exerciseVideosData.contents);
+    }
+    fetchExerciseVideo();
+    console.log(exerciseVideos);
+  }, [])
+
 
   return (
     <Grid 
@@ -136,6 +157,23 @@ export default function ExerciseCard({exercise, index}) {
               <Chip color="success" label={exercise.equipment}></Chip>
               <Chip color="primary" label={exercise.target}></Chip>
             </Stack>
+            <Typography>
+              {exerciseVideos?.slice(0, 6).map((item, index)=>(
+                <a 
+                  key={index}
+                  href={`http://www.youtube.com/watch?v=${item.video.videoId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src={item.video.thumbnails[0].url} alt={item.video.title} />
+                  <Box>
+                    <Typography variant="h5" color="#000">
+                      {item.video.title}
+                    </Typography>
+                  </Box>
+                </a>
+              ))}
+            </Typography>
           </Box>
         </Modal>
       </div>

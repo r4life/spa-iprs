@@ -7,6 +7,7 @@ import ExerciseCard from './ExerciseCard';
 
 const ExerciseList = ({exercises, totalNumber}) => {
 
+  // Mapping out the exercises array using ExerciseCard component
   const currentExercises = (
     <>
       {exercises.map((exercise, index) => <ExerciseCard key={index} exercise={exercise}/>)}
