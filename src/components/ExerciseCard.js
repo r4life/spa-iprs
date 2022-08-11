@@ -116,13 +116,6 @@ export default function ExerciseCard({exercise, index}) {
                 }} 
                 color="success" 
                 label={exercise.equipment}></Chip>
-              <Chip 
-                sx={{
-                  textTransform: 'capitalize',
-                  textAlign: 'center'
-                }} 
-                color="secondary" 
-                label={exercise.target}></Chip>
             </Stack>
             
           </CardContent>
