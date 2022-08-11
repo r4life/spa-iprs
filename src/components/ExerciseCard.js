@@ -26,8 +26,10 @@ const style = {
   p: 4,
 };
 
-// ExerciseCard component that will be used by it's parent, 
-// which is ExerciseList component
+// ExerciseCard component that will be used by ExerciseList.js component, 
+// exercise props is received to fetch the videos.
+// When fetch receives the data from the API, it will set exerciseVideos state.
+// This state will be used 
 export default function ExerciseCard({exercise, index}) {
   const [open, setOpen] = useState(false);
   const [exerciseVideos, setExerciseVideos] = useState([]);
@@ -204,6 +206,10 @@ export default function ExerciseCard({exercise, index}) {
               label={exercise.target}></Chip>
           </Stack>
           <Typography>
+            {/* Mapping out the exerciseVideos listing them out 
+            in horizontally listed cards. Clicking the card
+            will open up a new tab in the browser and directed to the
+            link */}
             <div style={{ width: '95%', margin: 'auto'}}>
               <Stack
                 Container 
@@ -246,10 +252,26 @@ export default function ExerciseCard({exercise, index}) {
                         />
                         <div style={{padding: '10px'}}>
                           <Typography 
-                            variant="h7" 
+                            noWrap
+                            variant="h6" 
                             color="#000"
+                            sx={{
+                              maxWidth: '25ch',
+                              overflow: 'hidden'
+                            }}
                             >
                             {item.snippet.title}
+                          </Typography>
+                          <Typography 
+                            noWrap
+                            variant="h9" 
+                            color="#666"
+                            sx={{
+                              maxWidth: '25ch',
+                              overflow: 'hidden'
+                            }}
+                            >
+                            {item.snippet.channelTitle}
                           </Typography>
                         </div>
                       </CardActionArea>
