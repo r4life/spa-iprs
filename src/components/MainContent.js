@@ -98,7 +98,7 @@ const MainContent = () => {
             marginBottom: '20px'
           }}
         >
-          Find exercises that fits you!
+          Find exercises that fit you best!
         </Typography>
       </Container>
 
@@ -152,7 +152,7 @@ const MainContent = () => {
           Container 
           direction={'row'} 
           mt={4} 
-          spacing={4} 
+          spacing={1} 
           ml={2}
           sx={{
             height: 'auto',

@@ -16,7 +16,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  maxWidth: '700px',
+  maxWidth: '500px',
   minWidth: '300px',
   bgcolor: '#fff',
   border: '1px solid #333',
@@ -73,12 +73,12 @@ export default function ExerciseCard({exercise, index}) {
         >
           <CardMedia
             component="img"
-            height="400"
             image={exercise.gifUrl}
             alt={exercise.name}
             loading="lazy" 
             sx={{
               boxShadow: '0'
+
             }}
           />
           <CardContent>
