@@ -36,11 +36,12 @@ function Copyright() {
 }
 
 // Main content section for this SPA
-// Every component will be encompassed within this component.
+// Every component will be placed within this component.
 const MainContent = () => {
   const [search, setSearch] = useState('');
   const [exercises, setExercises] = useState(ExerciseJSON);
   const [displayedExercises, setDisplayedExercises] = useState([]);
+  const [items, setItems] = useState([]);
 
   // Search by .filter method when search button is clicked.
   // It sets the search back to empty input field and sets
